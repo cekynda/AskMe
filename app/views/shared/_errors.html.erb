@@ -1,9 +1,9 @@
-<% if @question.errors.full_messages_for(:title).any? %>
-  <% @question.errors.full_messages_for(:title).each do |message| %>
-  <div><%= message %></div>
-  <% end %>
-
-  <% @question.errors.full_messages_for(:body).each do |message| %>
-  <div><%= message %></div>
-  <% end %>
+<% if @question.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
