@@ -1,0 +1,13 @@
+<h1>Questions</h1>
+<% @questions.each do |question| %>
+  <div>
+    <%= question.title %>
+  </div>
+  <time>
+    <%= question.formatted_created_at %>
+  </time>
+  <div>
+    <%= question.body %>
+  </div>
+  <%= link_to 'Show', question_path(question), class: 'btn btn-primary' %>
+<% end %>

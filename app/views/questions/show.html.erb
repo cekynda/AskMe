@@ -1,0 +1,7 @@
+<div>
+  <p><%= @question.title %></p>
+  <time><%=@question.formatted_created_at %></time>
+  <p><%= @question.body %></p>
+</div>
+<%= link_to 'Back', questions_path, class: 'btn btn-primary' %>
+
