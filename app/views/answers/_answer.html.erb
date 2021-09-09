@@ -1,0 +1,14 @@
+<% unless answer.archived? %>
+<p>
+  <strong>Answerer:</strong>
+  <%= answer.answerer %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= answer.body %>
+</p>
+<%= link_to 'Delete', [answer.question, answer],
+            data: { method: :delete, confirm: "Are you sure?" },
+            class: 'btn btn-danger' %>
+<% end %>

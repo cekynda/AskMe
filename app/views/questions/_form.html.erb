@@ -21,5 +21,13 @@
     </div>
   </div>
 
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :status %>
+      <%= f.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+  </div>
+
+
   <%= f.submit "Submit question!", class: 'btn btn-primary' %>
 <% end %>

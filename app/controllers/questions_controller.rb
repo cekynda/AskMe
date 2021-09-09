@@ -1,10 +1,32 @@
 class QuestionsController < ApplicationController
-  def index
-    @questions = Question.all
-  end
+  before_action :set_question!, only: %i[show destroy edit update]
+  http_basic_authenticate_with name: "nikita", password: "95146781", except: [:index, :show]
+
 
   def show
-    @question = Question.find params[:id]
+    @answers = Answer.order created_at: :desc
+  end
+
+  def destroy
+    @question.destroy
+    flash[:success] = "Question deleted!"
+    redirect_to questions_path
+  end
+
+  def edit
+  end
+
+  def update
+    if @question.update question_params
+      flash[:success] = "Question updated!"
+      redirect_to questions_path
+    else
+      render :edit
+    end
+  end
+
+  def index
+    @questions = Question.all
   end
 
   def new
@@ -13,37 +35,21 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new question_params
-    
     if @question.save
+      flash[:success] = "Question created!"
       redirect_to questions_path
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
-  end
-
-  def edit
-    @question = Question.find params[:id]
-  end
-
-  def update
-    @question = Question.find params[:id]
-
-    if @question.update question_params
-      redirect_to questions_path
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @question = Question.find params[:id]
-    @question.destroy
-    redirect_to questions_path
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, :status)
+  end
+
+  def set_question!
+    @question = Question.find params[:id]
   end
 end

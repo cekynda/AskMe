@@ -1,5 +1,10 @@
 <h1 class="mb-4" style="text-align: center">Questions</h1>
+<h4 style="text-align: center">Our blog has <%= Question.public_count %> questions and counting</h4>
+<div class="mt-3" style="text-align: center">
+<%= link_to "New Question", new_question_path, class: 'btn btn-primary' %>
+</div>
 <% @questions.each do |question| %>
+  <% unless question.archived? %>
   <article class="card mt-3" style="text-align:center; background-color: red">
     <div class="card-body" style="color: black; background-color: yellow">
       <h4><%= question.title %></h2>
@@ -21,4 +26,5 @@
 
     </div>
   </article>
+  <% end %>
 <% end %>

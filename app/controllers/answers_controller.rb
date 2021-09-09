@@ -1,22 +1,22 @@
 class AnswersController < ApplicationController
-  before_action :set_question
-  before_action :set_answer, except: :create
-  
-  def create
-    @answer = @question.answers.create answer_params
+  http_basic_authenticate_with name: "nikita", password: "95146781", only: :destroy
 
-    if @answer.save
-      flash[:success] = "Answer created!"
-      redirect_to question_path(@question)
-    else
-      render 'questions/show'
-    end
+  def create
+    @question = Question.find params[:question_id]
+    @answer = @question.answers.create answer_params
+    redirect_to question_path(@question)
   end
 
   def edit
+    @question = Question.find params[:question_id]
+    @answer = @question.answers.find params[:id]
+
   end
 
   def update
+    @question = Question.find params[:question_id]
+    @answer = @question.answers.find params[:id]
+
     if @answer.update answer_params
       redirect_to question_path(@question)
     else
@@ -25,6 +25,8 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.find(params[:id])
     @answer.destroy
     redirect_to question_path(@question)
   end
@@ -32,14 +34,6 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:answerer, :body)
-  end
-
-  def set_question
-    @question = Question.find params[:question_id]
-  end
-
-  def set_answer
-    @answer = @question.answers.find params[:id]
+    params.require(:answer).permit(:answerer, :body, :status)
   end
 end

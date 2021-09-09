@@ -10,34 +10,9 @@
                   data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
 
 <h2>Answers:</h2>
-<% @question.answers.each do |answer| %>
-  <p>
-    <strong>Answerer:</strong>
-    <%= answer.answerer %>
-  </p>
 
-  <p>
-    <strong>Answer:</strong>
-    <%= answer.body %>
-  </p>
-  <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-info'%>
-  <%= link_to 'Destroy', question_answer_path(@question, answer), 
-  data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger'%>
-
-<% end %>
+<%= render @question.answers %>
 
 <h2>Write an answer:</h2>
-<%= form_with model: [ @question, @question.answers.build ] do |form| %>
-  <p>
-    <%= form.label :answerer %><br>
-    <%= form.text_field :answerer %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
 
+<%= render 'answers/form' %>

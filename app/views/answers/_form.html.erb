@@ -1,4 +1,4 @@
-<%= form_with model: [ @question, @answer ] do |form| %>
+<%= form_with model: [ @question, @question.answers.build ] do |form| %>
   <p>
     <%= form.label :answerer %><br>
     <%= form.text_field :answerer %>
@@ -7,7 +7,14 @@
     <%= form.label :body %><br>
     <%= form.text_area :body %>
   </p>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :status %>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+  </div>
   <p>
     <%= form.submit %>
   </p>
+
 <% end %>
