@@ -1,18 +1,21 @@
-<div>
-  <p><%= @question.title %></p>
-  <time><%=@question.formatted_created_at %></time>
-  <p><%= @question.body %></p>
+<div class="card" style="width: 18rem; margin-left: 35%; background-color: yellow">
+  <div class="card-body">
+    <h5 class="card-title"><%= @question.title %></h5>
+    <p class="card-text"><%= @question.body %></p>
+  </div>
 </div>
-<%= link_to 'Back', questions_path, class: 'btn btn-primary' %>
-<%= link_to "Edit", edit_question_path(@question), class: 'btn btn-info' %>
+<div class="mt-1" style="margin-left: 39%">
+<%= link_to 'Back', questions_path, class: 'btn btn-primary btn-sm' %>
+<%= link_to "Edit", edit_question_path(@question), class: 'btn btn-info btn-sm' %>
 <%= link_to "Destroy", question_path(@question),
                   method: :delete,
-                  data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
-
+                  data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+</div>
+<hr>
 <h2>Answers:</h2>
-
+<hr>
 <%= render @question.answers %>
-
+<hr>
 <h2>Write an answer:</h2>
 
 <%= render 'answers/form' %>

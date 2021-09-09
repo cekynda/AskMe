@@ -1,12 +1,19 @@
 <%= form_with model: [ @question, @question.answers.build ] do |form| %>
-  <p>
-    <%= form.label :answerer %><br>
-    <%= form.text_field :answerer %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :answerer %>
+    </div>
+    <div class="col-sm-10">
+      <%= form.text_field :answerer %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :body %>
+    </div>
+    <div class="col-sm-10">
+      <%= form.text_area :body %>
+    </div>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= form.label :status %>
