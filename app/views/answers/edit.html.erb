@@ -1,3 +1,22 @@
 <h1>Edit Answer</h1>
 
-<%= render 'form' %>
+<%= form_with model: [ @question, @answer ] do |form| %>
+  <p>
+    <%= form.label :answerer %><br>
+    <%= form.text_field :answerer %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :status %>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+  </div>
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
