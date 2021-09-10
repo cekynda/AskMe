@@ -4,8 +4,12 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find params[:question_id]
     @answer = @question.answers.create answer_params
-    redirect_to question_path(@question)
-    
+    if @answer.save
+      flash[:success] = 'Answer created!'
+      redirect_to question_path(@question)
+    else
+      render 'questions/show'
+    end
   end
 
   def edit
