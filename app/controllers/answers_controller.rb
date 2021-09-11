@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  include ActionView::RecordIdentifier
+
   http_basic_authenticate_with name: "nikita", password: "95146781", only: [ :destroy, :update ]
 
   def create
@@ -23,7 +25,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.find params[:id]
 
     if @answer.update answer_params
-      redirect_to question_path(@question, anchor: "answer-#{@answer.id}")
+      redirect_to question_path(@question, anchor: dom_id(@answer))
     else
       render :edit, status: :unprocessable_entity
     end

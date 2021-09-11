@@ -1,5 +1,5 @@
 <% unless answer.archived? %>
-  <article class="mb-3 card" id="answer-<%= answer.id %>">
+<%= tag.article class: 'mb-3 card', id: dom_id(answer) do %>
     <div class="card-body">
       <section class="card-text">
         <p class="mt-2 mb-3">
@@ -17,5 +17,5 @@
                     class: 'btn btn-danger btn-sm' %>
         <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-info btn-sm' %>
     </div>
-  </article>
+  <% end %>
 <% end %>
