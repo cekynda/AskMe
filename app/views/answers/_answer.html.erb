@@ -1,15 +1,21 @@
 <% unless answer.archived? %>
-<p>
-  <strong>Answerer:</strong>
-  <%= answer.answerer %>
-</p>
+  <article class="mb-3 card" id="answer-<%= answer.id %>">
+    <div class="card-body">
+      <section class="card-text">
+        <p class="mt-2 mb-3">
+          <strong>Answerer:</strong>
+          <%= answer.answerer %>
+        </p>
 
-<p>
-  <strong>Answer:</strong>
-  <%= answer.body %>
-</p>
-<%= link_to 'Delete', [answer.question, answer],
-            data: { method: :delete, confirm: "Are you sure?" },
-            class: 'btn btn-danger btn-sm' %>
-<%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-info btn-sm' %>
+        <p class="mt-2 mb-3">
+          <strong>Answer:</strong>
+          <%= answer.body %>
+        </p>
+      </section>
+        <%= link_to 'Delete', [answer.question, answer],
+                    data: { method: :delete, confirm: "Are you sure?" },
+                    class: 'btn btn-danger btn-sm' %>
+        <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-info btn-sm' %>
+    </div>
+  </article>
 <% end %>
