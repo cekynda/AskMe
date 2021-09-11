@@ -18,8 +18,16 @@
 <hr>
 <h2>Answers:</h2>
 <hr>
+<%= paginate @answers%>
+
 <%= render @question.answers %>
+
+<%= paginate @answers %>
+
 <hr>
 <h2>Write an answer:</h2>
 
 <%= render 'answers/form' %>
+
+
+
